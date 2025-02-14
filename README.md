@@ -19,20 +19,20 @@ ROS2Bridge is a plugin designed to explore data exchange between ITOM and ROS2. 
 
 Before using ROS2Bridge, ensure that the following packages and dependencies (as listed under "Locate the components required for ROS 2") are installed on your computer. Additionally, you must have ROS2 Humble installed.
 
-
-https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html
-
+Refer to the installation guide here:  
+[ROS 2 Humble Installation (Ubuntu)](https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html)
 
 The plugin depends on the following ROS2 packages:
 
-- *rclcpp : Core package to create ROS2 nodes.
-- *rosapi_msgs
-- *std_msgs
-- *std_srvs
-- *example_interfaces
-- *sensor_msgs
-- *itom_ros2_test (used for message definitions)
-- *cv_bridge (.to test 2D image data exchange)
+- *rclcpp*: Core package to create ROS2 nodes.
+- *rosapi_msgs*
+- *std_msgs*
+- *std_srvs*
+- *example_interfaces*
+- *sensor_msgs*
+- *itom_ros2_test*: Used for message definitions.
+- *cv_bridge*: Required to test 2D image data exchange.
+
 
 
 
