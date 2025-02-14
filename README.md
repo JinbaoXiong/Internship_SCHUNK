@@ -90,14 +90,6 @@ ament_target_dependencies(${target_name}
   cv_bridge
 )
 ```
-###Extending ROS2Bridge
-
-If you wish to extend ROS2Bridge (for example, to interact with MoveIt!), simply add the corresponding `find_package line%, such as in your CMakeLists.txt:
-`
-lind_package(moveit_core REQUIRED)
-`
-
-and add moveit_core to your `ment_target_dependencies`.
 
 
 ## ROS2Bridge Overview
