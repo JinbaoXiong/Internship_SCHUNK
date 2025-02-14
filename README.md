@@ -90,62 +90,58 @@ lind_package(moveit_core REQUIRED)
 and add moveit_core to your `ment_target_dependencies`.
 
 
-### ROS2Bridge Overview
+## ROS2Bridge Overview
 
 ROS2Bridge is a plugin integrated into ITOM that facilitates data exchange between ITOM and external ROS2 programs. Key features include:
 
+### Data Exchange
+- Allows bidirectional data exchange between ITOM and ROS2 (both sending and receiving data).
+- Supports conversion between ROS2 Image messages and ITOM's `ito::DataObject` (via OpenCV and cv_bridge).
 
-** Data Exchange */
-- Allows bidirectional data exchange between ITOM and ROS2(both sending and receiving data).
-- Supports conversion between ROS2 Image messages and ITOM's `ito::DataObject`(/via OpenCV and cv_bridge).
-
-
-** Node and Service Server **
+### Node and Service Server
 Upon creation of an instance, ROS2Bridge:
-
 - Creates a ROS2 node named `ros2_itom_bridge`.
 - Sets up a service server called `image_exchange` to handle service requests.
 
 
-### image_exchange_pkg Overview
 
-the `image_exchange_pkg` is a simple ROS2 package used to validate data exchange with ITOM. Its workflow is as follows:
+## image_exchange_pkg Overview
 
-- *Client Creation(**:The package creates a ROS2 client for the `image_exchange` service provided by ROS2Bridge. It waits until the ROS2Bridge service server is active.
+The `image_exchange_pkg` is a simple ROS2 package used to validate data exchange with ITOM. Its workflow is as follows:
 
-- *Image Request*
+### Client Creation
+The package creates a ROS2 client for the `image_exchange` service provided by ROS2Bridge. It waits until the ROS2Bridge service server is active.
 
-In the callback function [send_image_request], the package reads the image file `Software_solution.jpg` from the package's `data` directory. It converts the image into a cv::Mat object, then uses `cv_bridge` to convert the cv::Mat to a ROS2 Image message and sends the request to ROS2Bridge.
+### Image Request
+In the callback function `send_image_request`, the package reads the image file `Software_solution.jpg` from the package's `data` directory.  
+It converts the image into a `cv::Mat` object, then uses `cv_bridge` to convert the `cv::Mat` to a ROS2 `Image` message and sends the request to ROS2Bridge.
 
-- *Service Server Response (ROS2Bridge)*
+### Service Server Response (ROS2Bridge)
+The service server callback `handle_image_request` in ROS2Bridge receives the ROS2 `Image` message.  
+It converts the ROS2 `Image` message to a `cv::Mat`, rotates the image by **90 degrees** using OpenCV, converts the rotated image back to a ROS2 `Image` message, and sends it back as a reply.
 
-The service server callback [handle_image_request] in ROS2Bridge receives the ROS2 Image message. It converts the ROS2 Image message to a cv::Mat, rotates the image by 90 degrees using OpenCV, converts the rotated image back to a ROS2 Image message, and sends it back as a reply.
+### Client Processing
+Once the client in `image_exchange_pkg` receives the response, it converts the ROS2 `Image` message back to a `cv::Mat` and saves the image as `response_image.jpg`.
 
-
-- *Client Processing*
-
-Once the client in `image_exchange_pkg` receives the response, it converts the ROS2 Image message back to a cv::Mat and saves the image as `response_image.jpg`.
-
-
-- *ITOM Data Conversion*
-
-Finally, when ROS2Bridge's GetVal() function is called, it uses `setCvMatToDataObject` to convert the image (received from image_exchange_pkg) into ITOM's ito::DataObject.
+### ITOM Data Conversion
+Finally, when ROS2Bridge's `GetVal()` function is called, it uses `setCvMatToDataObject` to convert the image (received from `image_exchange_pkg`) into ITOM's `ito::DataObject`.
 
 
-### Usage
 
-1. **Prepare the ROS2 Workspace***
-  Ensure that you have extracted the `image_exchange_pkg` and `itom_ros2_test` packages, created a ROS2 workspace, and built the workspace.
+## Usage
 
-2. **Run the ROS2 Image Exchange Client**
-  Open a terminal in the `image_exchange_pkg` workspace and run:
+### 1. Prepare the ROS2 Workspace
+Ensure that you have extracted the `image_exchange_pkg` and `itom_ros2_test` packages, created a ROS2 workspace, and built the workspace.
+
+### 2. Run the ROS2 Image Exchange Client
+Open a terminal in the `image_exchange_pkg` workspace and run:
 
 ```bash
 so urce install/setup.bash
 ros2 run image_exchange_pkg image_exchange_client
 ```
 
-3. **Execute ITOM Commands**
+### 3.  Execute ITOM Commands
 
 In ITOM, input the following commands in sequence:
 
@@ -158,12 +154,13 @@ test_conversion.getVal(data)
  You should see logs in both the ITOM terminal and the terminal running the `image_exchange_pkg` client.  In ITOM, click on `Global Variables` on the top-right, and you will see the image displayed as an ITOM `ito::DataObject`.
 
 
-### Extending ROS2Bridge
+## Extending ROS2Bridge
 
 Users can extend ROS2Bridge to interact with other ROS2 packages. For example, to add MoveIt! support:
 
-- Add `find_package(moveit_core REQUIRED)` in your C MakeLists.txt.
-- Append moveit_core to the `ament_target_dependencies` list.
+- Add `find_package(moveit_core REQUIRED)` in your **CMakeLists.txt**.
+- Append `moveit_core` to the `ament_target_dependencies` list.
 
 This modular approach allows you to enhance the functionality of ROS2Bridge for various ROS2-based applications.
+
 
