@@ -1,19 +1,19 @@
 # ROS2Bridge
 
-ROS2Bridge is a plugin designed to explore data exchange between ITOM and ROS2. It enables ITOM to create ROS2 nodes and interact with external ROS2 programs. This plugin currently validates data exchanges (including 1D, 2D, ND, and point cloud data) and demonstrates how to exchange 2D Zimage data between ITOM and a ROS2 system.
+ROS2Bridge is a plugin designed to explore data exchange between ITOM and ROS2. It enables ITOM to create ROS2 nodes and interact with external ROS2 programs. This plugin currently validates data exchanges between ITOM and external ROS2 Programs and demonstrates how to exchange 2D Image Data between ITOM and external ROS2 Program.
 
 
 ## Table of Contents
 
--+Requirements
-*
--Installation(*)
---Configuration and Build Instructions(*)
---ROS2Bridge Overview
---image_exchange_pkg Overview
---Usage
---Extending ROS2Bridge
---License
+- [Requirements](#requirements)
+- [Installation](#installation)
+  - [Configuration and Build Instructions](#configuration-and-build-instructions)
+  - [ROS2Bridge Overview](#ros2bridge-overview)
+  - [image_exchange_pkg Overview](#image_exchange_pkg-overview)
+  - [Usage](#usage)
+  - [Extending ROS2Bridge](#extending-ros2bridge)
+- [License](#license)
+
 
 ## Requirements
 
