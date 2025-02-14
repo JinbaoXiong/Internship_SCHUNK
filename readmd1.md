@@ -22,7 +22,7 @@ Before integrating the backend into the plugin, ensure the following components 
 
 3. **Convert Backend Scripts to C++**:  
    - Convert `arm_control_service.py` and `remote_control_server_test.py` into **C++ equivalents**.
-   - Identify the required ROS2 packages:
+   - Identify the required ROS2 packages, such as:
      - `rclcpp`
      - `moveit_core`
      - `moveit_ros_planning_interface`
