@@ -38,39 +38,38 @@ The plugin depends on the following ROS2 packages:
 
 ## Installation
 
-
-###Extract ROS2 Packages
+### Extract ROS2 Packages
 
 In the *test* folder of ROS2Bridge, there are two ROS2 packages:
 
-- *image_exchange_pkg : Validates 2D data exchange between ITOM and external ROS2 programs.
-- *itom_ros2_test : Contains message definitions for 1D, 2D, ND, and point cloud data. This package is used by ROS2Bridge and can be extended for further development with ND and point cloud data.
+- **image_exchange_pkg**: Validates 2D data exchange between ITOM and external ROS2 programs.
+- **itom_ros2_test**: Contains message definitions for 1D, 2D, ND, and point cloud data. This package is used by ROS2Bridge and can be extended for further development with ND and point cloud data.
 
+### Create a ROS2 Workspace
 
-###Create a ROS2 Workspace
+Follow the ROS2 workspace creation instructions here:  
+[Creating a ROS2 Workspace](https://docs.ros.org/en/foxy/Tutorials/Beginner-Client-Libraries/Creating-A-Workspace/Creating-A-Workspace.html)  
 
+This guide explains how to set up a new workspace and compile the extracted packages.
 
-https://docs.ros.org/en/foxy/Tutorials/Beginner-Client-Libraries/Creating-A-Workspace/Creating-A-Workspace.html
-
-Follow the ROS2 workspace creation instructions to create a new workspace and compile the extracted packages.
-
+---
 
 ### Configuration and Build Instructions
 
-To allow your plugin to interact with the ROS2 system, you need to add the following lines in your *CmakeLists.txt*:
+To allow your plugin to interact with the ROS2 system, add the following lines in your **CMakeLists.txt**:
 
-`
-lind_package(rclcpp REQUIRED)
-lind_package(rosapi_msgs REQUIRED)
-lind_package(std_msgs REQUIRED)
-lind_package(std_srvs REQUIRED)
-lind_package(example_interfaces REQUIRED)
-lind_package(sensor_msgs REQUIRED)
-lind_package(itom_ros2_test REQUIRED HINTS)
-lind_package(cv_bridge REQUIRED)
-`
+```cmake
+find_package(rclcpp REQUIRED)
+find_package(rosapi_msgs REQUIRED)
+find_package(std_msgs REQUIRED)
+find_package(std_srvs REQUIRED)
+find_package(example_interfaces REQUIRED)
+find_package(sensor_msgs REQUIRED)
+find_package(itom_ros2_test REQUIRED HINTS)
+find_package(cv_bridge REQUIRED)
+```
 include these packages in the *ament_target_dependencies* section:
-
+```cmake
 ament_target_dependencies(${target_name}
   rclcpp
   rosapi_msgs
@@ -80,9 +79,7 @@ ament_target_dependencies(${target_name}
   sensor_msgs
   cv_bridge
 )
-`
-
-
+```
 ###Extending ROS2Bridge
 
 If you wish to extend ROS2Bridge (for example, to interact with MoveIt!), simply add the corresponding `find_package line%, such as in your CMakeLists.txt:
