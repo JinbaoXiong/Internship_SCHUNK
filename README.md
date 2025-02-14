@@ -7,12 +7,22 @@ ROS2Bridge is a plugin designed to explore data exchange between ITOM and ROS2. 
 
 - [Requirements](#requirements)
 - [Installation](#installation)
+  - [Extract ROS2 Packages](#extract-ros2-packages)
+  - [Create a ROS2 Workspace](#create-a-ros2-workspace)
   - [Configuration and Build Instructions](#configuration-and-build-instructions)
-  - [ROS2Bridge Overview](#ros2bridge-overview)
-  - [image_exchange_pkg Overview](#image_exchange_pkg-overview)
-  - [Usage](#usage)
-  - [Extending ROS2Bridge](#extending-ros2bridge)
-- [License](#license)
+- [ROS2Bridge Overview](#ros2bridge-overview)
+- [image_exchange_pkg Overview](#image_exchange_pkg-overview)
+  - [Client Creation](#client-creation)
+  - [Image Request](#image-request)
+  - [Service Server Response (ROS2Bridge)](#service-server-response-ros2bridge)
+  - [Client Processing](#client-processing)
+  - [ITOM Data Conversion](#itom-data-conversion)
+- [Usage](#usage)
+  - [Prepare the ROS2 Workspace](#1-prepare-the-ros2-workspace)
+  - [Run the ROS2 Image Exchange Client](#2-run-the-ros2-image-exchange-client)
+  - [Execute ITOM Commands](#3-execute-itom-commands)
+- [Extending ROS2Bridge](#extending-ros2bridge)
+
 
 
 ## Requirements
