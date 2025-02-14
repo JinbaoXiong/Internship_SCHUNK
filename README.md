@@ -137,7 +137,7 @@ Ensure that you have extracted the `image_exchange_pkg` and `itom_ros2_test` pac
 Open a terminal in the `image_exchange_pkg` workspace and run:
 
 ```bash
-so urce install/setup.bash
+source install/setup.bash
 ros2 run image_exchange_pkg image_exchange_client
 ```
 
